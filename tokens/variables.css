@@ -1,0 +1,376 @@
+/* ==========================================================================
+   Purposeful Media MVW2 - Design System Variables
+
+   Source: Figma Design System v3 (exported via AutoHTML)
+   Created: January 13, 2026
+
+   Naming Convention:
+   --[category]-[property]-[variant]
+
+   Categories: font, color, shadow, spacing, radius, breakpoint
+   ========================================================================== */
+
+:root {
+  /* ==========================================================================
+     TYPOGRAPHY - Font Families
+     ========================================================================== */
+  --font-family-heading: 'Lato', sans-serif;
+  --font-family-body: 'Open Sans', sans-serif;
+
+  /* ==========================================================================
+     TYPOGRAPHY - Font Sizes
+     Figma naming: size/line-height (e.g., 36/54 = 36px size, 54px line-height)
+     ========================================================================== */
+
+  /* Headlines */
+  --font-size-h1: 36px;
+  --font-size-h2: 30px;
+  --font-size-h3: 24px;
+  --font-size-h4: 21px;
+  --font-size-h5: 18px;
+  --font-size-h6: 16px;
+
+  /* Paragraphs */
+  --font-size-lead: 24px;        /* Paragraph 24/36 Semi-Bold */
+  --font-size-body-lg: 21px;     /* Paragraph 21/31.5 */
+  --font-size-body: 18px;        /* Paragraph 18/27 - primary body */
+  --font-size-sm: 12px;          /* Paragraph 12/18 */
+  --font-size-meta: 11px;        /* Blog card meta (mobile) 11/16 */
+  --font-size-xs: 10px;          /* Captions 10/12 */
+
+  /* Quotes/Blockquotes */
+  --font-size-quote-xl: 52px;    /* Quote 52/78 - Extra large pullquote */
+  --font-size-quote-lg: 30px;    /* Quote 30/45 - Large (matches H2) */
+  --font-size-quote-md: 24px;    /* Quote 24/36 - Medium (matches H3) */
+
+  /* ==========================================================================
+     TYPOGRAPHY - Line Heights
+     All headlines use 1.5x ratio per design system
+     ========================================================================== */
+
+  /* Headlines (1.5x ratio) */
+  --line-height-h1: 54px;
+  --line-height-h2: 45px;
+  --line-height-h3: 36px;
+  --line-height-h4: 31.5px;
+  --line-height-h5: 27px;
+  --line-height-h6: 24px;
+
+  /* Paragraphs */
+  --line-height-lead: 36px;
+  --line-height-body-lg: 31.5px;
+  --line-height-body: 27px;
+  --line-height-sm: 18px;
+  --line-height-meta: 16px;      /* Blog card meta (mobile) */
+  --line-height-xs: 12px;
+  --line-height-form: 18px;      /* Form text: 18/18 (1:1 ratio) */
+
+  /* Quotes/Blockquotes (1.5x ratio) */
+  --line-height-quote-xl: 78px;  /* Quote 52/78 */
+  --line-height-quote-lg: 45px;  /* Quote 30/45 (matches H2) */
+  --line-height-quote-md: 36px;  /* Quote 24/36 (matches H3) */
+
+  /* ==========================================================================
+     TYPOGRAPHY - Font Weights
+     Note: Lato-Heavy is weight 800-900, but loaded as separate font file
+     ========================================================================== */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 800;      /* Lato-Heavy equivalent */
+
+  /* ==========================================================================
+     COLORS - Primary (Navy)
+     Brand primary: --color-primary (#1B1464) = Figma 700
+     ========================================================================== */
+  --color-primary-50: #f0f3fd;
+  --color-primary-100: #d1dcf9;
+  --color-primary-200: #a3b8f3;
+  --color-primary-300: #7595ed;
+  --color-primary-400: #4872e7;
+  --color-primary-500: #1d50de;
+  --color-primary-600: #1740b0;
+  --color-primary-700: #1b1464;   /* Primary Navy */
+  --color-primary-800: #0b1f57;
+  --color-primary-900: #06102b;
+
+  /* Semantic alias */
+  --color-primary: var(--color-primary-700);
+  --color-primary-light: var(--color-primary-500);
+  --color-primary-dark: var(--color-primary-900);
+  --color-primary-navy-20: rgba(27, 20, 100, 0.2);  /* Navy at 20% opacity (gradients, shadows) */
+
+  /* ==========================================================================
+     COLORS - Accent (Gold)
+     Brand accent: --color-accent (#D4AF37) = Figma 500
+     ========================================================================== */
+  --color-accent-50: #faf5e6;
+  --color-accent-100: #f4ebcd;
+  --color-accent-200: #ecdca8;
+  --color-accent-300: #e4cd82;
+  --color-accent-400: #dcbe5d;
+  --color-accent-500: #d4af37;    /* Primary Gold */
+  --color-accent-600: #b39226;
+  --color-accent-700: #89701e;
+  --color-accent-800: #524312;
+  --color-accent-900: #292209;
+
+  /* Semantic alias */
+  --color-accent: var(--color-accent-500);
+  --color-accent-light: var(--color-accent-300);
+  --color-accent-dark: var(--color-accent-700);
+
+  /* ==========================================================================
+     COLORS - Neutral (Gray)
+     ========================================================================== */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f6f6f7;
+  --color-neutral-100: #eceeef;
+  --color-neutral-200: #c7cbcf;
+  --color-neutral-300: #a2a9af;
+  --color-neutral-400: #868f97;
+  --color-neutral-500: #6c757d;
+  --color-neutral-600: #51585e;
+  --color-neutral-700: #363a3e;
+  --color-neutral-800: #1b1d1f;
+  --color-neutral-900: #0e0f10;
+  --color-neutral-1000: #000000;
+
+  /* Semantic aliases */
+  --color-white: var(--color-neutral-0);
+  --color-black: var(--color-neutral-1000);
+
+  /* ==========================================================================
+     COLORS - Error (Red)
+     ========================================================================== */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+
+  --color-error: var(--color-error-500);
+
+  /* ==========================================================================
+     COLORS - Warning (Orange)
+     ========================================================================== */
+  --color-warning-50: #fef1e8;
+  --color-warning-100: #fedcc5;
+  --color-warning-200: #fcc096;
+  --color-warning-300: #fba468;
+  --color-warning-400: #fa8839;
+  --color-warning-500: #f97316;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
+  --color-warning: var(--color-warning-500);
+
+  /* ==========================================================================
+     COLORS - Teal (Buttons/Interactive)
+     Used for button variants and interactive elements
+     ========================================================================== */
+  --color-teal-50: #f2fcfc;
+  --color-teal-100: #d7f5f5;
+  --color-teal-200: #b0ebeb;
+  --color-teal-300: #88e0e0;
+  --color-teal-400: #61d6d6;
+  --color-teal-500: #39cccc;
+  --color-teal-600: #2ba9a9;
+  --color-teal-700: #1e7575;
+  --color-teal-800: #114141;
+  --color-teal-900: #0a2727;
+
+  --color-teal: var(--color-teal-500);
+  --color-teal-light: var(--color-teal-300);
+  --color-teal-dark: var(--color-teal-700);
+
+  /* ==========================================================================
+     COLORS - Text
+     Semantic text colors referencing the palette
+     ========================================================================== */
+  --color-text-heading: var(--color-primary-700);
+  --color-text-body: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-200);
+  --color-text-reverse: var(--color-neutral-0);
+  --color-text-dark: var(--color-neutral-600);
+  --color-text-error: var(--color-error-500);
+  --color-text-focus: var(--color-primary-900);
+  --color-text-disabled: var(--color-neutral-300);
+
+  /* ==========================================================================
+     COLORS - Background
+     ========================================================================== */
+  --color-bg-primary: var(--color-neutral-0);
+  --color-bg-secondary: var(--color-neutral-100);
+  --color-bg-brand: var(--color-primary-700);
+
+  /* ==========================================================================
+     COLORS - Borders
+     ========================================================================== */
+  --color-border-subtle: var(--color-neutral-200);
+  --color-border-default: var(--color-neutral-300);
+  --color-border-strong: var(--color-neutral-600);
+  --color-border-primary: var(--color-primary-700);
+  --color-border-accent: var(--color-accent-500);
+
+  /* ==========================================================================
+     COLORS - Buttons
+     Semantic button color tokens extracted from button typography export
+     ========================================================================== */
+
+  /* Primary Button (Navy) */
+  --color-btn-primary-default: var(--color-primary-700);
+  --color-btn-primary-hover: var(--color-primary-500);
+  --color-btn-primary-active: var(--color-primary-900);
+  --color-btn-primary-text: var(--color-neutral-0);
+
+  /* Secondary Button (Gold) */
+  --color-btn-secondary-default: var(--color-accent-500);
+  --color-btn-secondary-hover: var(--color-accent-400);
+  --color-btn-secondary-active: var(--color-accent-600);
+  --color-btn-secondary-text: var(--color-primary-700);
+
+  /* Tertiary Button (Teal) */
+  --color-btn-tertiary-default: var(--color-teal-500);
+  --color-btn-tertiary-hover: var(--color-teal-300);
+  --color-btn-tertiary-active: var(--color-teal-700);
+  --color-btn-tertiary-text: var(--color-neutral-0);
+
+  /* Disabled Button */
+  --color-btn-disabled-bg: var(--color-neutral-400);
+  --color-btn-disabled-text: var(--color-neutral-200);
+
+  /* ==========================================================================
+     COLORS - Navigation
+     Semantic navigation color tokens extracted from navigation typography export
+     ========================================================================== */
+
+  /* Simple Navigation (on dark backgrounds, e.g., header) */
+  --color-nav-simple-default: var(--color-neutral-0);
+  --color-nav-simple-hover: var(--color-accent-400);
+  --color-nav-simple-active: var(--color-accent-600);
+  --color-nav-simple-accent: var(--color-accent-500);
+
+  /* Dropdown/Accordion Navigation (on light backgrounds) */
+  --color-nav-dropdown-default: var(--color-primary-700);
+  --color-nav-dropdown-hover: var(--color-primary-500);
+  --color-nav-dropdown-active: var(--color-primary-900);
+
+  /* Footer Navigation */
+  --color-nav-footer-default: var(--color-primary-700);
+  --color-nav-footer-hover: var(--color-primary-700);
+  --color-nav-footer-active: var(--color-neutral-0);
+  --color-nav-footer-disabled: var(--color-text-muted);
+
+  /* Disabled Navigation */
+  --color-nav-disabled: var(--color-neutral-400);
+
+  /* ==========================================================================
+     COLORS - Links
+     Semantic link color tokens extracted from link typography export
+     ========================================================================== */
+
+  /* Text Links (in body content) */
+  --color-link-text-default: var(--color-primary-700);
+  --color-link-text-hover: var(--color-primary-500);
+  --color-link-text-active: var(--color-primary-900);
+  --color-link-text-visited: var(--color-primary-700);
+
+  /* Accent Links (gold) */
+  --color-link-accent-default: var(--color-accent-500);
+  --color-link-accent-hover: var(--color-accent-400);
+  --color-link-accent-active: var(--color-accent-600);
+
+  /* Menu Links (navigation context) */
+  --color-link-menu-default: var(--color-primary-700);
+  --color-link-menu-hover: var(--color-primary-500);
+  --color-link-menu-reverse: var(--color-neutral-0);
+
+  /* Attribution/Footer Links */
+  --color-link-attribution: var(--color-neutral-200);
+
+  /* Pagination Links */
+  --color-link-pagination-default: var(--color-neutral-400);
+  --color-link-pagination-hover: var(--color-neutral-500);
+  --color-link-pagination-active: var(--color-neutral-600);
+  --color-link-pagination-disabled: var(--color-neutral-200);
+
+  /* Disabled Links */
+  --color-link-disabled: var(--color-neutral-400);
+
+  /* ==========================================================================
+     COLORS - Quotes/Blockquotes
+     Semantic quote color tokens extracted from quote typography export
+     ========================================================================== */
+
+  --color-quote-default: var(--color-text-muted);      /* Muted gray for subtle quotes */
+  --color-quote-brand: var(--color-text-heading);      /* Navy for emphasis */
+  --color-quote-reverse: var(--color-text-reverse);    /* White for dark backgrounds */
+  --color-quote-body: var(--color-text-body);          /* Body gray for standard quotes */
+
+  /* ==========================================================================
+     SHADOWS
+     ========================================================================== */
+  --shadow-none: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+  --shadow-subtle: 4px 4px 12px 0px rgba(0, 0, 0, 0.1);
+  --shadow-standard: 4px 4px 12px 0px rgba(0, 0, 0, 0.15);
+  --shadow-medium: 4px 4px 12px 0px rgba(0, 0, 0, 0.2);
+  --shadow-strong: 4px 4px 12px 0px rgba(0, 0, 0, 0.25);
+
+  /* ==========================================================================
+     SPACING
+     ========================================================================== */
+  --spacing-xs: 4px;
+  --spacing-6: 6px;
+  --spacing-sm: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-md: 16px;
+  --spacing-20: 20px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-40: 40px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  --spacing-80: 80px;
+
+  /* ==========================================================================
+     BUTTON SIZING
+     ========================================================================== */
+  --btn-padding-vertical-md: var(--spacing-12);
+  --btn-padding-horizontal: var(--spacing-3xl);
+  --btn-padding-horizontal-lg: var(--spacing-80);
+
+  /* ==========================================================================
+     TYPOGRAPHY - Compact Line Heights
+     Used in navigation and menu contexts (1:1 font-size to line-height ratio)
+     ========================================================================== */
+  --line-height-menu: 21px;            /* Menu links: matches body-lg font-size */
+
+  /* ==========================================================================
+     BORDER RADIUS
+     ========================================================================== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     BREAKPOINTS
+     Per CLAUDE.md specifications
+     ========================================================================== */
+  --breakpoint-mobile: 380px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1150px;
+  --breakpoint-desktop-plus: 1920px;
+}

@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Purposeful Media - Sprite Sheet CSS
+   ==========================================================================
+
+   Two sprite systems:
+   1. Decorative Icons - Symbolic icons with 4 color variants baked in
+   2. UI Icons - Functional icons with CSS filter-based coloring
+
+   Reference: docs/sprite-scaling-reference.md
+   ========================================================================== */
+
+/* ==========================================================================
+   DECORATIVE ICONS (purposeful-sprite-symbolic.svg)
+   ==========================================================================
+
+   Source Specifications:
+   - Grid: 6 columns × 16 rows
+   - Reference icon size: 90px
+   - Reference sprite dimensions: 540px × 1440px
+   - Colors by row groups:
+     - Rows 1-4 (offset 0): Navy (#1B1464)
+     - Rows 5-8 (offset 360px): Dark (#54595F)
+     - Rows 9-12 (offset 720px): Gray (#6C757D)
+     - Rows 13-16 (offset 1080px): White (#FFFFFF)
+
+   Scaling Formula:
+     scale_factor = display_size / 90
+     background-size: (540 × scale) (1440 × scale)
+     background-position: (baseX × scale) (baseY × scale)
+   ========================================================================== */
+
+.decorative-icon-display {
+  display: inline-block;
+  background-image: url('../../assets/svg/decorative-icons/purposeful-sprite-symbolic.svg');
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------
+   Size Variants
+   -------------------------------------- */
+
+/* Small: 30px (scale 0.333) */
+.decorative-icon-display--small {
+  width: 30px;
+  height: 30px;
+  background-size: 180px 480px;
+}
+
+/* Medium: 60px (scale 0.666) */
+.decorative-icon-display--medium {
+  width: 60px;
+  height: 60px;
+  background-size: 360px 960px;
+}
+
+/* Large: 90px (scale 1.0 - reference size) */
+.decorative-icon-display--large {
+  width: 90px;
+  height: 90px;
+  background-size: 540px 1440px;
+}
+
+/* XLarge: 120px (scale 1.333) */
+.decorative-icon-display--xlarge {
+  width: 120px;
+  height: 120px;
+  background-size: 720px 1920px;
+}
+
+/* --------------------------------------
+   Icon Positions - NAVY Color
+   Base positions at 90px reference
+   -------------------------------------- */
+
+/* Row 1 Navy - base Y: 0 */
+.decorative-icon-display--large[data-icon="accelerate"][data-color="navy"] { background-position: 0px 0px; }
+.decorative-icon-display--large[data-icon="attract"][data-color="navy"] { background-position: -90px 0px; }
+.decorative-icon-display--large[data-icon="contact"][data-color="navy"] { background-position: -180px 0px; }
+.decorative-icon-display--large[data-icon="delight"][data-color="navy"] { background-position: -270px 0px; }
+.decorative-icon-display--large[data-icon="download"][data-color="navy"] { background-position: -360px 0px; }
+.decorative-icon-display--large[data-icon="efficiency"][data-color="navy"] { background-position: -450px 0px; }
+
+/* Row 2 Navy - base Y: -90 */
+.decorative-icon-display--large[data-icon="email"][data-color="navy"] { background-position: 0px -90px; }
+.decorative-icon-display--large[data-icon="engage"][data-color="navy"] { background-position: -90px -90px; }
+.decorative-icon-display--large[data-icon="exit"][data-color="navy"] { background-position: -180px -90px; }
+.decorative-icon-display--large[data-icon="expertise"][data-color="navy"] { background-position: -270px -90px; }
+.decorative-icon-display--large[data-icon="inbound"][data-color="navy"] { background-position: -360px -90px; }
+.decorative-icon-display--large[data-icon="momentum"][data-color="navy"] { background-position: -450px -90px; }
+
+/* Row 3 Navy - base Y: -180 */
+.decorative-icon-display--large[data-icon="news"][data-color="navy"] { background-position: 0px -180px; }
+.decorative-icon-display--large[data-icon="persona"][data-color="navy"] { background-position: -90px -180px; }
+.decorative-icon-display--large[data-icon="professional"][data-color="navy"] { background-position: -180px -180px; }
+.decorative-icon-display--large[data-icon="roi"][data-color="navy"] { background-position: -270px -180px; }
+.decorative-icon-display--large[data-icon="schedule"][data-color="navy"] { background-position: -360px -180px; }
+.decorative-icon-display--large[data-icon="strategy"][data-color="navy"] { background-position: -450px -180px; }
+
+/* Row 4 Navy - base Y: -270 */
+.decorative-icon-display--large[data-icon="unit"][data-color="navy"] { background-position: 0px -270px; }
+.decorative-icon-display--large[data-icon="value"][data-color="navy"] { background-position: -90px -270px; }
+.decorative-icon-display--large[data-icon="webinar"][data-color="navy"] { background-position: -180px -270px; }
+
+/* --------------------------------------
+   Icon Positions - WHITE Color
+   Y offset: +1080px (12 rows × 90px)
+   -------------------------------------- */
+
+/* Row 1 White - base Y: -1080 */
+.decorative-icon-display--large[data-icon="accelerate"][data-color="white"] { background-position: 0px -1080px; }
+.decorative-icon-display--large[data-icon="attract"][data-color="white"] { background-position: -90px -1080px; }
+.decorative-icon-display--large[data-icon="contact"][data-color="white"] { background-position: -180px -1080px; }
+.decorative-icon-display--large[data-icon="delight"][data-color="white"] { background-position: -270px -1080px; }
+.decorative-icon-display--large[data-icon="download"][data-color="white"] { background-position: -360px -1080px; }
+.decorative-icon-display--large[data-icon="efficiency"][data-color="white"] { background-position: -450px -1080px; }
+
+/* Row 2 White - base Y: -1170 */
+.decorative-icon-display--large[data-icon="email"][data-color="white"] { background-position: 0px -1170px; }
+.decorative-icon-display--large[data-icon="engage"][data-color="white"] { background-position: -90px -1170px; }
+.decorative-icon-display--large[data-icon="exit"][data-color="white"] { background-position: -180px -1170px; }
+.decorative-icon-display--large[data-icon="expertise"][data-color="white"] { background-position: -270px -1170px; }
+.decorative-icon-display--large[data-icon="inbound"][data-color="white"] { background-position: -360px -1170px; }
+.decorative-icon-display--large[data-icon="momentum"][data-color="white"] { background-position: -450px -1170px; }
+
+/* Row 3 White - base Y: -1260 */
+.decorative-icon-display--large[data-icon="news"][data-color="white"] { background-position: 0px -1260px; }
+.decorative-icon-display--large[data-icon="persona"][data-color="white"] { background-position: -90px -1260px; }
+.decorative-icon-display--large[data-icon="professional"][data-color="white"] { background-position: -180px -1260px; }
+.decorative-icon-display--large[data-icon="roi"][data-color="white"] { background-position: -270px -1260px; }
+.decorative-icon-display--large[data-icon="schedule"][data-color="white"] { background-position: -360px -1260px; }
+.decorative-icon-display--large[data-icon="strategy"][data-color="white"] { background-position: -450px -1260px; }
+
+/* Row 4 White - base Y: -1350 */
+.decorative-icon-display--large[data-icon="unit"][data-color="white"] { background-position: 0px -1350px; }
+.decorative-icon-display--large[data-icon="value"][data-color="white"] { background-position: -90px -1350px; }
+.decorative-icon-display--large[data-icon="webinar"][data-color="white"] { background-position: -180px -1350px; }
+
+/* --------------------------------------
+   Scaled Positions - SMALL (30px)
+   Scale factor: 0.333
+   -------------------------------------- */
+
+/* Navy - Small */
+.decorative-icon-display--small[data-icon="accelerate"][data-color="navy"] { background-position: 0px 0px; }
+.decorative-icon-display--small[data-icon="attract"][data-color="navy"] { background-position: -30px 0px; }
+.decorative-icon-display--small[data-icon="contact"][data-color="navy"] { background-position: -60px 0px; }
+.decorative-icon-display--small[data-icon="delight"][data-color="navy"] { background-position: -90px 0px; }
+.decorative-icon-display--small[data-icon="download"][data-color="navy"] { background-position: -120px 0px; }
+.decorative-icon-display--small[data-icon="efficiency"][data-color="navy"] { background-position: -150px 0px; }
+.decorative-icon-display--small[data-icon="email"][data-color="navy"] { background-position: 0px -30px; }
+.decorative-icon-display--small[data-icon="engage"][data-color="navy"] { background-position: -30px -30px; }
+.decorative-icon-display--small[data-icon="exit"][data-color="navy"] { background-position: -60px -30px; }
+.decorative-icon-display--small[data-icon="expertise"][data-color="navy"] { background-position: -90px -30px; }
+.decorative-icon-display--small[data-icon="inbound"][data-color="navy"] { background-position: -120px -30px; }
+.decorative-icon-display--small[data-icon="momentum"][data-color="navy"] { background-position: -150px -30px; }
+.decorative-icon-display--small[data-icon="news"][data-color="navy"] { background-position: 0px -60px; }
+.decorative-icon-display--small[data-icon="persona"][data-color="navy"] { background-position: -30px -60px; }
+.decorative-icon-display--small[data-icon="professional"][data-color="navy"] { background-position: -60px -60px; }
+.decorative-icon-display--small[data-icon="roi"][data-color="navy"] { background-position: -90px -60px; }
+.decorative-icon-display--small[data-icon="schedule"][data-color="navy"] { background-position: -120px -60px; }
+.decorative-icon-display--small[data-icon="strategy"][data-color="navy"] { background-position: -150px -60px; }
+.decorative-icon-display--small[data-icon="unit"][data-color="navy"] { background-position: 0px -90px; }
+.decorative-icon-display--small[data-icon="value"][data-color="navy"] { background-position: -30px -90px; }
+.decorative-icon-display--small[data-icon="webinar"][data-color="navy"] { background-position: -60px -90px; }
+
+/* --------------------------------------
+   Scaled Positions - MEDIUM (60px)
+   Scale factor: 0.666
+   -------------------------------------- */
+
+/* Navy - Medium */
+.decorative-icon-display--medium[data-icon="accelerate"][data-color="navy"] { background-position: 0px 0px; }
+.decorative-icon-display--medium[data-icon="attract"][data-color="navy"] { background-position: -60px 0px; }
+.decorative-icon-display--medium[data-icon="contact"][data-color="navy"] { background-position: -120px 0px; }
+.decorative-icon-display--medium[data-icon="delight"][data-color="navy"] { background-position: -180px 0px; }
+.decorative-icon-display--medium[data-icon="download"][data-color="navy"] { background-position: -240px 0px; }
+.decorative-icon-display--medium[data-icon="efficiency"][data-color="navy"] { background-position: -300px 0px; }
+.decorative-icon-display--medium[data-icon="email"][data-color="navy"] { background-position: 0px -60px; }
+.decorative-icon-display--medium[data-icon="engage"][data-color="navy"] { background-position: -60px -60px; }
+.decorative-icon-display--medium[data-icon="exit"][data-color="navy"] { background-position: -120px -60px; }
+.decorative-icon-display--medium[data-icon="expertise"][data-color="navy"] { background-position: -180px -60px; }
+.decorative-icon-display--medium[data-icon="inbound"][data-color="navy"] { background-position: -240px -60px; }
+.decorative-icon-display--medium[data-icon="momentum"][data-color="navy"] { background-position: -300px -60px; }
+.decorative-icon-display--medium[data-icon="news"][data-color="navy"] { background-position: 0px -120px; }
+.decorative-icon-display--medium[data-icon="persona"][data-color="navy"] { background-position: -60px -120px; }
+.decorative-icon-display--medium[data-icon="professional"][data-color="navy"] { background-position: -120px -120px; }
+.decorative-icon-display--medium[data-icon="roi"][data-color="navy"] { background-position: -180px -120px; }
+.decorative-icon-display--medium[data-icon="schedule"][data-color="navy"] { background-position: -240px -120px; }
+.decorative-icon-display--medium[data-icon="strategy"][data-color="navy"] { background-position: -300px -120px; }
+.decorative-icon-display--medium[data-icon="unit"][data-color="navy"] { background-position: 0px -180px; }
+.decorative-icon-display--medium[data-icon="value"][data-color="navy"] { background-position: -60px -180px; }
+.decorative-icon-display--medium[data-icon="webinar"][data-color="navy"] { background-position: -120px -180px; }
+
+
+/* ==========================================================================
+   UI ICONS (purposeful-sprite-ui.svg)
+   ==========================================================================
+
+   Source Specifications:
+   - Grid: 6 columns × 2 rows
+   - Reference icon size: 256px
+   - Reference sprite dimensions: 1536px × 512px
+   - Single color in sprite - uses CSS filters for color variations
+
+   Scaling Formula:
+     scale_factor = display_size / 256
+     background-size: (1536 × scale) (512 × scale)
+     background-position: (baseX × scale) (baseY × scale)
+   ========================================================================== */
+
+.ui-icon {
+  display: inline-block;
+  background-image: url('../../assets/svg/ui-icons/purposeful-sprite-ui.svg');
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------
+   Size Variants
+   -------------------------------------- */
+
+/* 16px (scale 0.0625) */
+.ui-icon--16 {
+  width: 16px;
+  height: 16px;
+  background-size: 96px 32px;
+}
+
+/* 24px (scale 0.09375) */
+.ui-icon--24 {
+  width: 24px;
+  height: 24px;
+  background-size: 144px 48px;
+}
+
+/* 32px (scale 0.125) */
+.ui-icon--32 {
+  width: 32px;
+  height: 32px;
+  background-size: 192px 64px;
+}
+
+/* 48px (scale 0.1875) */
+.ui-icon--48 {
+  width: 48px;
+  height: 48px;
+  background-size: 288px 96px;
+}
+
+/* --------------------------------------
+   Icon Positions - 24px Size
+   Base positions at 256px: search(0,0), arrow-up(-256,0), play(-512,0),
+   pause(-768,0), hamburger(-1024,0), close(-1280,0)
+   Scale: 0.09375
+   -------------------------------------- */
+
+.ui-icon--24[data-icon="search"] { background-position: 0px 0px; }
+.ui-icon--24[data-icon="arrow-up"] { background-position: -24px 0px; }
+.ui-icon--24[data-icon="play"] { background-position: -48px 0px; }
+.ui-icon--24[data-icon="pause"] { background-position: -72px 0px; }
+.ui-icon--24[data-icon="hamburger"] { background-position: -96px 0px; }
+.ui-icon--24[data-icon="close"] { background-position: -120px 0px; }
+.ui-icon--24[data-icon="diamond"] { background-position: 0px -24px; }
+.ui-icon--24[data-icon="check"] { background-position: -24px -24px; }
+.ui-icon--24[data-icon="dot"] { background-position: -48px -24px; }
+
+/* --------------------------------------
+   Icon Positions - 32px Size
+   Scale: 0.125
+   -------------------------------------- */
+
+.ui-icon--32[data-icon="search"] { background-position: 0px 0px; }
+.ui-icon--32[data-icon="arrow-up"] { background-position: -32px 0px; }
+.ui-icon--32[data-icon="play"] { background-position: -64px 0px; }
+.ui-icon--32[data-icon="pause"] { background-position: -96px 0px; }
+.ui-icon--32[data-icon="hamburger"] { background-position: -128px 0px; }
+.ui-icon--32[data-icon="close"] { background-position: -160px 0px; }
+.ui-icon--32[data-icon="diamond"] { background-position: 0px -32px; }
+.ui-icon--32[data-icon="check"] { background-position: -32px -32px; }
+.ui-icon--32[data-icon="dot"] { background-position: -64px -32px; }
+
+/* --------------------------------------
+   Icon Positions - 48px Size
+   Scale: 0.1875
+   -------------------------------------- */
+
+.ui-icon--48[data-icon="search"] { background-position: 0px 0px; }
+.ui-icon--48[data-icon="arrow-up"] { background-position: -48px 0px; }
+.ui-icon--48[data-icon="play"] { background-position: -96px 0px; }
+.ui-icon--48[data-icon="pause"] { background-position: -144px 0px; }
+.ui-icon--48[data-icon="hamburger"] { background-position: -192px 0px; }
+.ui-icon--48[data-icon="close"] { background-position: -240px 0px; }
+.ui-icon--48[data-icon="diamond"] { background-position: 0px -48px; }
+.ui-icon--48[data-icon="check"] { background-position: -48px -48px; }
+.ui-icon--48[data-icon="dot"] { background-position: -96px -48px; }
+
+/* --------------------------------------
+   Arrow Rotation Utilities
+   -------------------------------------- */
+
+.ui-icon[data-icon="arrow-down"] { transform: rotate(180deg); }
+.ui-icon[data-icon="arrow-left"] { transform: rotate(-90deg); }
+.ui-icon[data-icon="arrow-right"] { transform: rotate(90deg); }
+
+/* Arrow variants use arrow-up position */
+.ui-icon--24[data-icon="arrow-down"],
+.ui-icon--24[data-icon="arrow-left"],
+.ui-icon--24[data-icon="arrow-right"] { background-position: -24px 0px; }
+
+.ui-icon--32[data-icon="arrow-down"],
+.ui-icon--32[data-icon="arrow-left"],
+.ui-icon--32[data-icon="arrow-right"] { background-position: -32px 0px; }
+
+.ui-icon--48[data-icon="arrow-down"],
+.ui-icon--48[data-icon="arrow-left"],
+.ui-icon--48[data-icon="arrow-right"] { background-position: -48px 0px; }
+
+/* --------------------------------------
+   Color Filters for UI Icons
+   -------------------------------------- */
+
+/* Navy (#1B1464) */
+.ui-icon[data-color="navy"] {
+  filter: brightness(0) saturate(100%) invert(8%) sepia(94%) saturate(3268%) hue-rotate(237deg) brightness(93%) contrast(101%);
+}
+
+/* White (#FFFFFF) */
+.ui-icon[data-color="white"] {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+/* Gray (#868F97) */
+.ui-icon[data-color="gray"] {
+  filter: brightness(0) saturate(100%) invert(62%) sepia(6%) saturate(515%) hue-rotate(169deg) brightness(89%) contrast(86%);
+}
+
+/* Gold (#D4AF37) */
+.ui-icon[data-color="gold"] {
+  filter: brightness(0) saturate(100%) invert(73%) sepia(47%) saturate(491%) hue-rotate(10deg) brightness(91%) contrast(89%);
+}
