@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Responsive Demo | Purposeful Media Design System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Design System Variables -->
+  <link rel="stylesheet" href="../../../tier-3-production/css/variables.css">
+
+  <style>
+    /* ==========================================================================
+       Reset
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family-body);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      color: var(--color-text-body);
+      background-color: var(--color-neutral-100);
+    }
+
+    /* ==========================================================================
+       Demo Layout
+       ========================================================================== */
+
+    .demo-header {
+      background-color: var(--color-primary-900);
+      color: var(--color-white);
+      padding: var(--spacing-xl);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .demo-header h1 {
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-heavy);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .demo-header p {
+      font-size: var(--font-size-sm);
+      opacity: 0.8;
+    }
+
+    .viewport-indicator {
+      background-color: var(--color-accent-500);
+      color: var(--color-primary-900);
+      padding: var(--spacing-md);
+      text-align: center;
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-lg);
+      position: sticky;
+      top: 80px;
+      z-index: 999;
+    }
+
+    .breakpoint-section {
+      display: none;
+    }
+
+    .breakpoint-section.active {
+      display: block;
+    }
+
+    .variant-label {
+      background-color: var(--color-neutral-200);
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-family: var(--font-family-heading);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-neutral-600);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: var(--spacing-lg);
+    }
+
+    .variant-label:first-of-type {
+      margin-top: 0;
+    }
+
+    .variant-description {
+      background-color: var(--color-white);
+      padding: var(--spacing-md);
+      border-left: 4px solid var(--color-accent-500);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .variant-description p {
+      margin: 0;
+      font-size: var(--font-size-sm);
+    }
+
+    /* ==========================================================================
+       Hero Component - Base Styles
+       ========================================================================== */
+
+    .hero {
+      position: relative;
+      width: 100%;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .hero__content {
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .hero__headline {
+      font-family: var(--font-family-heading);
+      font-weight: var(--font-weight-heavy);
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       Hero Simple
+       ========================================================================== */
+
+    .hero--simple {
+      height: 124px;
+      background: linear-gradient(
+        0deg,
+        rgba(27, 20, 100, 1) 0%,
+        rgba(212, 175, 55, 1) 50%
+      );
+      border-bottom: 4px solid var(--color-accent-500);
+    }
+
+    .hero--simple .hero__content {
+      background-color: var(--color-primary-700);
+      height: 100%;
+      justify-content: center;
+    }
+
+    .hero--simple .hero__headline {
+      color: var(--color-white);
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-h1);
+    }
+
+    /* ==========================================================================
+       Hero Reverse
+       ========================================================================== */
+
+    .hero--reverse {
+      height: 124px;
+      background: radial-gradient(
+        closest-side,
+        rgba(245, 245, 245, 1) 0%,
+        rgba(212, 175, 55, 1) 100%
+      );
+      border-bottom: 4px solid var(--color-primary-700);
+    }
+
+    .hero--reverse .hero__content {
+      background-color: transparent;
+      height: 100%;
+      justify-content: center;
+    }
+
+    .hero--reverse .hero__headline {
+      color: var(--color-primary-700);
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-h1);
+    }
+
+    /* ==========================================================================
+       Hero ATF (Above The Fold)
+       ========================================================================== */
+
+    .hero--atf {
+      height: 820px;
+      border-bottom: 4px solid var(--color-accent-500);
+      overflow: hidden;
+    }
+
+    .hero__image-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      /* Desktop/DesktopPlus: 40px left/right, 16px top, 80px bottom */
+      padding: 16px 40px 80px 40px;
+    }
+
+    .hero__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero__text {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      max-width: 554px;
+    }
+
+    .hero--atf .hero__headline {
+      color: var(--color-white);
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-h1);
+      margin-bottom: 32px;
+    }
+
+    .hero__cta-text {
+      font-family: var(--font-family-heading);
+      font-size: 18px;
+      font-weight: var(--font-weight-heavy);
+      text-transform: uppercase;
+      color: var(--color-white);
+      margin-bottom: 32px;
+    }
+
+    .hero__button {
+      background-color: var(--color-accent-500);
+      color: var(--color-primary-700);
+      font-family: var(--font-family-heading);
+      font-size: 18px;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      padding: 16px 80px;
+      border-radius: var(--radius-sm);
+      align-self: flex-start;
+      transition: background-color 0.2s ease;
+    }
+
+    .hero__button:hover,
+    .hero__button:focus-visible {
+      background-color: var(--color-accent-600);
+    }
+
+    .hero__button:focus-visible {
+      outline: 2px solid var(--color-white);
+      outline-offset: 2px;
+    }
+
+    /* ==========================================================================
+       ATF Center
+       ========================================================================== */
+
+    .hero--atf-center {
+      background: linear-gradient(
+        0deg,
+        rgba(27, 20, 100, 1) 0%,
+        rgba(212, 175, 55, 1) 50%
+      );
+    }
+
+    .hero--atf-center .hero__text {
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 100px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero--atf-center .hero__button {
+      align-self: center;
+    }
+
+    /* ==========================================================================
+       ATF Left
+       ========================================================================== */
+
+    .hero--atf-left {
+      background: linear-gradient(
+        61.01deg,
+        rgba(27, 20, 100, 1) 0%,
+        rgba(212, 175, 55, 1) 69.18%
+      );
+    }
+
+    .hero--atf-left .hero__text {
+      left: 60px;
+      bottom: 100px;
+    }
+
+    /* ==========================================================================
+       ATF Right
+       ========================================================================== */
+
+    .hero--atf-right {
+      background: linear-gradient(
+        -61.01deg,
+        rgba(27, 20, 100, 1) 0%,
+        rgba(212, 175, 55, 1) 69.18%
+      );
+    }
+
+    .hero--atf-right .hero__text {
+      right: 60px;
+      bottom: 100px;
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .hero--atf-right .hero__button {
+      align-self: flex-end;
+    }
+
+    /* ==========================================================================
+       Responsive Adjustments
+       ========================================================================== */
+
+    /* DesktopPlus: Constrain all heroes to 1920px width (templates provide wider backgrounds) */
+    @media (min-width: 1920px) {
+      .hero {
+        max-width: 1920px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* Tablet: Typography scaling, reduced ATF height, image padding */
+    @media (min-width: 768px) and (max-width: 1149px) {
+      .hero--simple .hero__headline,
+      .hero--reverse .hero__headline,
+      .hero--atf .hero__headline {
+        font-size: var(--font-size-h2);
+        line-height: var(--line-height-h2);
+      }
+
+      .hero--atf {
+        height: 600px;
+      }
+
+      /* Tablet image padding: 40px left/right, 12px top, 64px bottom */
+      .hero__image-container {
+        padding: 12px 40px 64px 40px;
+      }
+
+      /* Center all text vertically on tablet */
+      .hero--atf-center .hero__text {
+        top: 50%;
+        transform: translate(-50%, -50%); /* Both horizontal and vertical centering */
+        bottom: auto;
+      }
+
+      .hero--atf-left .hero__text,
+      .hero--atf-right .hero__text {
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: auto;
+      }
+
+      .hero--atf-left .hero__text {
+        left: 60px;
+      }
+
+      .hero--atf-right .hero__text {
+        right: 60px;
+      }
+    }
+
+    /* Desktop: Reduced ATF height, adjusted positioning */
+    @media (min-width: 1150px) and (max-width: 1919px) {
+      .hero--atf {
+        height: 700px;
+      }
+
+      /* All ATF variants bottom-aligned at Desktop (moved up 20px from 80px to 100px) */
+      .hero--atf-center .hero__text {
+        bottom: 100px;
+      }
+
+      .hero--atf-left .hero__text {
+        left: 60px;
+        top: auto;
+        bottom: 100px;
+      }
+
+      .hero--atf-right .hero__text {
+        right: 60px;
+        top: auto;
+        bottom: 100px;
+      }
+    }
+
+    /* Mobile: Typography scaling, aspect ratio constraint for ATF, image padding */
+    @media (max-width: 767px) {
+      .hero--simple .hero__headline,
+      .hero--reverse .hero__headline,
+      .hero--atf .hero__headline {
+        font-size: var(--font-size-h2);
+        line-height: var(--line-height-h2);
+      }
+
+      .hero__content {
+        padding: 0 24px;
+      }
+
+      .hero--atf {
+        height: auto;
+        aspect-ratio: 767 / 578;
+        min-height: 286px;
+        max-height: 578px;
+      }
+
+      /* Mobile image padding: 12px left/right/top, 32px bottom */
+      .hero__image-container {
+        padding: 12px 12px 32px 12px;
+      }
+
+      .hero__text {
+        max-width: calc(100% - 24px);
+        padding: 12px;
+      }
+
+      /* Center text on mobile for simple and reverse variants */
+      .hero--simple .hero__headline,
+      .hero--reverse .hero__headline {
+        text-align: center;
+        width: 100%;
+      }
+
+      .hero--atf .hero__headline {
+        margin-bottom: 12px;
+      }
+
+      .hero__cta-text {
+        margin-bottom: 12px;
+      }
+
+      .hero__button {
+        padding: 8px 64px;
+      }
+
+      /* Center all text vertically on mobile */
+      .hero--atf-center .hero__text {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Both horizontal and vertical centering */
+        bottom: auto;
+        right: auto;
+        text-align: center;
+        align-items: center;
+      }
+
+      .hero--atf-left .hero__text,
+      .hero--atf-right .hero__text {
+        top: 50%;
+        transform: translateY(-50%);
+        bottom: auto;
+        left: 12px;
+        right: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Header -->
+  <div class="demo-header">
+    <h1>Hero Organism - Responsive Demo</h1>
+    <p>This demo displays hero variants appropriate for your current viewport width. Resize your browser to see different breakpoint variants. 5 types × 4 breakpoints = 20 variants.</p>
+  </div>
+
+  <!-- Viewport Indicator -->
+  <div class="viewport-indicator" id="viewport-indicator">
+    Current Breakpoint: <span id="current-breakpoint">Loading...</span> (<span id="current-width">0</span>px)
+  </div>
+
+  <!-- DesktopPlus Section (1920px+) -->
+  <section class="breakpoint-section" data-breakpoint="desktopplus">
+
+    <!-- Simple -->
+    <div class="variant-label">DesktopPlus - Simple (Headline Only)</div>
+    <div class="variant-description">
+      <p>124px height, navy→gold gradient background, navy content container, white H1 text (36px), gold 4px border.</p>
+    </div>
+    <section class="hero hero--simple">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- Reverse -->
+    <div class="variant-label">DesktopPlus - Reverse (Light Background)</div>
+    <div class="variant-description">
+      <p>124px height, light→gold radial gradient, navy H1 text (36px), navy 4px border. Alternate color scheme.</p>
+    </div>
+    <section class="hero hero--reverse">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- ATF Center -->
+    <div class="variant-label">DesktopPlus - ATF Center (Above The Fold)</div>
+    <div class="variant-description">
+      <p>820px height, full-bleed featured image, centered text overlay (554px max-width), vertical 0deg gradient, CTA + button.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-center">
+      <div class="hero__image-container">
+        <!-- Placeholder: Replace with WordPress featured image -->
+        <img class="hero__image"
+             src="../../../assets/images/bill-persona-landscape.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Centered</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Left -->
+    <div class="variant-label">DesktopPlus - ATF Left</div>
+    <div class="variant-description">
+      <p>820px height, full-bleed featured image with 40px/16px/80px border padding, left-aligned text (60px from left, 100px from bottom), 61deg diagonal gradient.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-left">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/bill-persona-landscape.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Left Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Right -->
+    <div class="variant-label">DesktopPlus - ATF Right</div>
+    <div class="variant-description">
+      <p>820px height, full-bleed featured image with 40px/16px/80px border padding, right-aligned text (60px from right, 100px from bottom), -61deg diagonal gradient (mirrored).</p>
+    </div>
+    <section class="hero hero--atf hero--atf-right">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/bill-persona-landscape.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Right Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- Desktop Section (1150-1919px) -->
+  <section class="breakpoint-section" data-breakpoint="desktop">
+
+    <!-- Simple -->
+    <div class="variant-label">Desktop - Simple (Headline Only)</div>
+    <div class="variant-description">
+      <p>124px height, same gradient and styling as DesktopPlus. H1 36px.</p>
+    </div>
+    <section class="hero hero--simple">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- Reverse -->
+    <div class="variant-label">Desktop - Reverse (Light Background)</div>
+    <div class="variant-description">
+      <p>124px height, same gradient and styling as DesktopPlus. H1 36px.</p>
+    </div>
+    <section class="hero hero--reverse">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- ATF Center -->
+    <div class="variant-label">Desktop - ATF Center</div>
+    <div class="variant-description">
+      <p>700px height (reduced from 820px), centered text, 80px from bottom.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-center">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Centered</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Left -->
+    <div class="variant-label">Desktop - ATF Left</div>
+    <div class="variant-description">
+      <p>700px height, left-aligned text (60px from left edge, 100px from bottom).</p>
+    </div>
+    <section class="hero hero--atf hero--atf-left">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Left Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Right -->
+    <div class="variant-label">Desktop - ATF Right</div>
+    <div class="variant-description">
+      <p>700px height, right-aligned text (60px from right edge, 100px from bottom).</p>
+    </div>
+    <section class="hero hero--atf hero--atf-right">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H1 Headline 36 54h</h1>
+        <p class="hero__cta-text">CTA Right Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- Tablet Section (768-1149px) -->
+  <section class="breakpoint-section" data-breakpoint="tablet">
+
+    <!-- Simple -->
+    <div class="variant-label">Tablet - Simple (Headline Only)</div>
+    <div class="variant-description">
+      <p>124px height, typography scales to H2 (30px).</p>
+    </div>
+    <section class="hero hero--simple">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- Reverse -->
+    <div class="variant-label">Tablet - Reverse (Light Background)</div>
+    <div class="variant-description">
+      <p>124px height, typography scales to H2 (30px).</p>
+    </div>
+    <section class="hero hero--reverse">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- ATF Center -->
+    <div class="variant-label">Tablet - ATF Center</div>
+    <div class="variant-description">
+      <p>600px height, image padding 40px/12px/64px, vertically centered text, H2 typography (30px).</p>
+    </div>
+    <section class="hero hero--atf hero--atf-center">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/b2b-content-creation-service.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Centered</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Left -->
+    <div class="variant-label">Tablet - ATF Left</div>
+    <div class="variant-description">
+      <p>600px height, left-aligned text (60px from left edge), vertically centered.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-left">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/b2b-content-creation-service.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Left Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Right -->
+    <div class="variant-label">Tablet - ATF Right</div>
+    <div class="variant-description">
+      <p>600px height, right-aligned text (60px from right edge), vertically centered.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-right">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/b2b-content-creation-service.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Right Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- Mobile Section (380-767px) -->
+  <section class="breakpoint-section" data-breakpoint="mobile">
+
+    <!-- Simple -->
+    <div class="variant-label">Mobile - Simple (Headline Only)</div>
+    <div class="variant-description">
+      <p>124px height, typography scales to H2 (30px), 24px horizontal padding.</p>
+    </div>
+    <section class="hero hero--simple">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- Reverse -->
+    <div class="variant-label">Mobile - Reverse (Light Background)</div>
+    <div class="variant-description">
+      <p>124px height, typography scales to H2 (30px), 24px horizontal padding.</p>
+    </div>
+    <section class="hero hero--reverse">
+      <div class="hero__content">
+        <h1 class="hero__headline">Lorem ipsum dolor sit amet</h1>
+      </div>
+    </section>
+
+    <!-- ATF Center -->
+    <div class="variant-label">Mobile - ATF Center</div>
+    <div class="variant-description">
+      <p>Aspect ratio 767:578 (286-578px height), image padding 12px/12px/32px, vertically centered text, reduced gaps (12px), button padding 8px×64px.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-center">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Centered</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Left -->
+    <div class="variant-label">Mobile - ATF Left</div>
+    <div class="variant-description">
+      <p>Same height/aspect ratio, text moves to bottom (32px from bottom), 12px padding.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-left">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Left Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+    <!-- ATF Right -->
+    <div class="variant-label">Mobile - ATF Right</div>
+    <div class="variant-description">
+      <p>Same height/aspect ratio, text moves to bottom (32px from bottom), 12px padding.</p>
+    </div>
+    <section class="hero hero--atf hero--atf-right">
+      <div class="hero__image-container">
+        <img class="hero__image"
+             src="../../../assets/images/email-deliverability-consultant-16by9.jpg"
+             alt="" />
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__headline">H2 Headline 30 45h</h1>
+        <p class="hero__cta-text">CTA Right Aligned</p>
+        <a href="#" class="hero__button">Button Text</a>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    /**
+     * Viewport detection and breakpoint display
+     */
+    function updateBreakpoint() {
+      const width = window.innerWidth;
+      const widthDisplay = document.getElementById('current-width');
+      const breakpointDisplay = document.getElementById('current-breakpoint');
+      const sections = document.querySelectorAll('.breakpoint-section');
+
+      let activeBreakpoint = '';
+
+      // Determine active breakpoint
+      if (width >= 1920) {
+        activeBreakpoint = 'desktopplus';
+        breakpointDisplay.textContent = 'DesktopPlus';
+      } else if (width >= 1150) {
+        activeBreakpoint = 'desktop';
+        breakpointDisplay.textContent = 'Desktop';
+      } else if (width >= 768) {
+        activeBreakpoint = 'tablet';
+        breakpointDisplay.textContent = 'Tablet';
+      } else {
+        activeBreakpoint = 'mobile';
+        breakpointDisplay.textContent = 'Mobile';
+      }
+
+      widthDisplay.textContent = width;
+
+      // Show only the appropriate section
+      sections.forEach(section => {
+        if (section.dataset.breakpoint === activeBreakpoint) {
+          section.classList.add('active');
+        } else {
+          section.classList.remove('active');
+        }
+      });
+    }
+
+    // Run on load and resize
+    updateBreakpoint();
+    window.addEventListener('resize', updateBreakpoint);
+  </script>
+
+</body>
+</html>
